@@ -1,16 +1,23 @@
 # Python_Flask_MySQL
 Flask connect MySQL
 Projet
-    งานนี้ทำให้ผู้ใช้งานโปรแกรมเมอร์ สามารถเปิด Server Local ได้โดยใช้ Flask เชื่อมต่อกับ Mysql แบบง่าย
+
+งานนี้ทำให้ผู้ใช้งานโปรแกรมเมอร์ สามารถเปิด Server Local ได้โดยใช้ Flask เชื่อมต่อกับ Mysql แบบง่าย
 
 Tools
-    1.Python 
-    2.MySQL (XAMPP)
-    3.HTML
-    4.CSS (Bootstrap)
-    5.Visual studio code
+
+1.Python 
+
+2.MySQL (XAMPP)
+
+3.HTML
+
+4.CSS (Bootstrap)
+
+5.Visual studio code
 
 Prepare
+
     1.XAMPP
         1.1 ดาวโหลดและติดตั้ง Xampp เพื่อเปิดการเชื่อต่อกับ Mysql ลิ้งดาวโหลด https://www.apachefriends.org/download.html
         1.2 หลังติดตั้งเปิด XAMPP Control Panel กดปุ่ม Start ช่อง MySQL และ Apche
@@ -24,6 +31,7 @@ Prepare
         2.1 ดาวโหลดและติดตั้ง Python ลิ้งดาวโหลด https://www.python.org/downloads/
     
 Run
+
     1.กด Start พิมหา Command Prompt 
     2.พิมคำสั่ง cd {ชื่อโฟรเดอร์} ไปยังโฟลเดอร์ flaskweb อย่างเช่น C:\Users\{PC_Name}\Desktop\flaskweb>
     3.หลังจากนั้นพิมคำสั่ง python app.py หรือ python3 app.py
