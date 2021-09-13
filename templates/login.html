@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h2>Sign In</h2>
+      <div>
+        <form method="POST" autocomplete="off">
+          <div class="form-group">
+            <label class="pull-left" for="usr">Username</label>
+            <input name="username" placeholder="Username" type="text" class="form-control" id="usr">
+          </div>
+          <div class="form-group">
+            <label class="pull-left" for="pwd">Password</label>
+            <div>
+              <input name="password" placeholder="Password" type="password" class="form-control" id="pwd">
+            </div>
+          </div>
+          <div class="msg">{{ msg }}</div>
+          <hr />
+          <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-center links">
+              <a href="{{ url_for('register') }}" class="btn">Register</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>

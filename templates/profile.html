@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    {% block content %}
+    <div class="jumbotron text-center">
+        <h1>{{account['Ticket_User']}}</h1>
+        <p>{{account['Ticket_Title']}}</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>information</h3>
+                <p>{{account['Ticket_Information']}}</p>
+            </div>
+            <div class="col-sm-6">
+                <h3>contact</h3>
+                <p>{{account['Ticket_Contact']}}</p>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-between">
+        <div class="col-sm-6">
+            <a href="" class="btn btn-primary" data-toggle="modal"
+                data-target="#modaledit{{account['Ticket_ID']}}">Edit</a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <div id="modaledit{{account['Ticket_ID']}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Yourself</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/Send" method="POST">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="hidden" name="id" value="{{account['Ticket_ID']}}">
+                            <input type="text" class="form-control" name="edit_title"
+                                value="{{account['Ticket_Title']}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control" name="edit_description"
+                                value="{{account['Ticket_Description']}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact</label>
+                            <input type="text" class="form-control" name="edit_contact"
+                                value="{{account['Ticket_Contact']}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Information</label>
+                            <input type="text" class="form-control" name="edit_information"
+                                value="{{account['Ticket_Information']}}">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

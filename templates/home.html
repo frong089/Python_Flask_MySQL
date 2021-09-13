@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title> Home </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <h1> All User list </h1>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Time Created (HH:MM:SS DD/MM/YY)</th>
+        <th>Time Update (HH:MM:SS DD/MM/YY)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody id="myTable">
+      {% for row in data %}
+      <tr>
+        <td>{{row.0}}</td>
+        <td>{{row.8}}</td>
+        <td>{{row.6}}</td>
+        <td>{{row.7}}</td>
+        <td>{{row.5}}</td>
+        <td>
+          {% if row.5 == "Sending" %}
+          <form action="/home_admin/refresh" method="POST">
+            <input type="hidden" name="id_2" value="{{row.0}}">
+            <button value="Accept" class="btn btn-primary" name="submit_2" type="submit">Accept</button>
+          </form>
+          {% elif row.5 == "Resolved" or row.5 == "Rejected" %}
+          <button disabled value="Accept" class="btn btn-primary" name="submit_2" type="submit">Accept</button>
+          {% else %}
+          <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalsend{{row.0}}">Show</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% for row2 in data %}
+  <div id="modalsend{{row2.0}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update User Profile</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/update" method="POST">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="hidden" name="id" value="{{row2.0}}">
+              <input type="text" class="form-control" name="edit_title" value="{{row2.9}}" readonly>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text" class="form-control" name="edit_description" value="{{row2.10}}" readonly>
+            </div>
+            <div class="form-group">
+              <label>Contact</label>
+              <input type="text" class="form-control" name="edit_contact" value="{{row2.11}}" readonly>
+            </div>
+            <div class="form-group">
+              <label>Information</label>
+              <input type="text" class="form-control" name="edit_information" value="{{row2.12}}" readonly>
+            </div>
+            <div class="form-group">
+              <button value="Resolved" class="btn btn-primary" name="submit" type="submit">Resolved</button>
+              <button value="Rejected" class="btn btn-primary" name="submit" type="submit">Rejected</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <hr />
+  <div class="d-flex justify-content-between">
+    <div class="col-sm-6">
+      <a href="{{ url_for('profile_admin') }}" class="btn btn-primary">Profile</a>
+    </div>
+    <div class="col-sm-6">
+      <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#myInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

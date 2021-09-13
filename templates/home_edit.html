@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title> Home </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <h1> This is my homepage </h1>
+    <p> Database Stdent </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Time Created (HH:MM:SS DD/MM/YY)</th>
+                <th>Time Update (HH:MM:SS DD/MM/YY)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td name="id" value="{{row.0}}">{{row.0}}</td>
+                <td>{{row.8}}</td>
+                <td>{{row.6}}</td>
+                <td>{{row.7}}</td>
+                <td>{{row.5}}</td>
+                <td>
+                    <a href="{{ url_for('Accepted') }}" class="btn btn-primary">Accept</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+        <a href="{{ url_for('profile_admin') }}" class="btn btn-primary">Profile</a>
+    </div>
+</body>
+
+</html>
